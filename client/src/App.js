@@ -1,23 +1,23 @@
-import { useState } from "react";
 import "./App.css";
+import React from "react";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:4000";
 
 function App() {
-  const [search, setSearch] = useState("");
-  const onClick = (e) => {
-    e.preventDefault();
-    alert(search);
-  };
-  const onChangeSearch = (e) => {
-    e.preventDefault();
-    setSearch(e.target.value);
+  const onClick = () => {
+    axios({
+      url: "/api/search",
+      method: "post",
+      data: {
+        search: "search",
+      },
+    });
   };
   return (
     <div className="App">
       <div>Main page</div>
-      <form onSubmit={(e) => onClick(e)}>
-        <input onChange={onChangeSearch} value={search} />
-        <button type="submit">검색</button>
-      </form>
+      <button onClick={onClick}>클릭</button>
     </div>
   );
 }

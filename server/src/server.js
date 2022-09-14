@@ -1,6 +1,7 @@
 import express from "express";
 import searchRouter from "./routes/search.js";
 import { Client } from "@elastic/elasticsearch";
+import cors from "cors";
 
 const app = express();
 const port = 4000;
@@ -23,6 +24,15 @@ async function bootstrap() {
 
 bootstrap();
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/api/search", searchRouter);
 
 app.get("/", (req, res) => {
