@@ -1,22 +1,12 @@
-import "./App.css";
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
+import './styles/global.css';
+import Router from './router';
 
-axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.baseURL = 'http://localhost:4000';
 
 function App() {
-  const onClick = () => {
-    axios({
-      url: "/api/search",
-      method: "get",
-    });
-  };
-  return (
-    <div className="App">
-      <div>Main page</div>
-      <button onClick={onClick}>클릭</button>
-    </div>
-  );
+  return <Router />;
 }
 
 export default App;
