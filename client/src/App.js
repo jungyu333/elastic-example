@@ -8,10 +8,7 @@ function App() {
   const onClick = () => {
     axios({
       url: "/api/search",
-      method: "post",
-      data: {
-        search: "search",
-      },
+      method: "get",
     });
   };
   return (

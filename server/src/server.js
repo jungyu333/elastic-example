@@ -1,17 +1,10 @@
 import express from "express";
 import searchRouter from "./routes/search.js";
-import { Client } from "@elastic/elasticsearch";
 import cors from "cors";
+import client from "./connection.js";
 
 const app = express();
 const port = 4000;
-
-const client = new Client({
-  node: "http://localhost:9200",
-  maxRetries: 5,
-  requestTimeout: 60000,
-  sniffOnStart: true,
-});
 
 async function bootstrap() {
   try {
