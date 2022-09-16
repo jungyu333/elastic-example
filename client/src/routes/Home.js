@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Card from '../components/Card';
+import NoResult from '../components/NoResult';
 
 const Wrapper = styled.div`
   display: flex;
@@ -36,11 +38,20 @@ const SearchForm = styled.form`
 
 const SearchResult = styled.div`
   margin: 2rem auto;
+  width: 80%;
+  display: ${({ data }) => (data.length !== 0 ? 'grid' : 'flex')};
+  text-align: ${({ data }) => (data.length !== 0 ? 'none' : 'center')};
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  grid-auto-rows: minmax(10rem, auto);
 `;
 
 function Home() {
   const [search, setSearch] = useState('');
-  const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState({
+    data: [],
+    isSearched: false,
+  });
 
   const onChange = e => {
     setSearch(e.target.value);
@@ -51,8 +62,10 @@ function Home() {
     axios
       .post('/api/search', { search: search })
       .then(res => {
-        setData([...res.data.hits]);
-        console.log(res.data.hits);
+        setSearchData({
+          data: [...res.data.hits],
+          isSearched: true,
+        });
       })
       .catch(err => console.error(err));
   };
@@ -69,12 +82,17 @@ function Home() {
         />
         <button type="submit">검색</button>
       </SearchForm>
-      <SearchResult>
-        {data &&
-          data.map(item => (
-            <div key={item._id}>{item._source.customer_full_name}</div>
-          ))}
-      </SearchResult>
+      {searchData.isSearched ? (
+        <SearchResult data={searchData.data}>
+          {searchData.data.length !== 0 ? (
+            searchData.data.map(item => (
+              <Card key={item._id} item={item._source} />
+            ))
+          ) : (
+            <NoResult />
+          )}
+        </SearchResult>
+      ) : null}
     </Wrapper>
   );
 }
