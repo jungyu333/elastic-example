@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   border: solid 0.5px lightgray;
@@ -20,24 +21,25 @@ const ItemRow = styled.div`
   justify-content: space-between;
 `;
 
-function Card({ item }) {
-  console.log(item);
+function Card({ item, id }) {
   return (
     <Wrapper>
-      <Container>
-        <ItemRow>
-          <p>이름</p>
-          <p>{item.customer_full_name}</p>
-        </ItemRow>
-        <ItemRow>
-          <p>성별</p>
-          <p>{item.customer_gender}</p>
-        </ItemRow>
-        <ItemRow>
-          <p>고객 ID</p>
-          <p>{item.customer_id}</p>
-        </ItemRow>
-      </Container>
+      <Link to={`/${id}`}>
+        <Container>
+          <ItemRow>
+            <p>이름</p>
+            <p>{item.customer_full_name}</p>
+          </ItemRow>
+          <ItemRow>
+            <p>성별</p>
+            <p>{item.customer_gender}</p>
+          </ItemRow>
+          <ItemRow>
+            <p>고객 ID</p>
+            <p>{id}</p>
+          </ItemRow>
+        </Container>
+      </Link>
     </Wrapper>
   );
 }

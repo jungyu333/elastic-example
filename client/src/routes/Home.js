@@ -86,7 +86,7 @@ function Home() {
         <SearchResult data={searchData.data}>
           {searchData.data.length !== 0 ? (
             searchData.data.map(item => (
-              <Card key={item._id} item={item._source} />
+              <Card key={item._id} item={item._source} id={item._id} />
             ))
           ) : (
             <NoResult />
