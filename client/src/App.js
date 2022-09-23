@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Router from './router';
 
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 
 function App() {
   return <Router />;

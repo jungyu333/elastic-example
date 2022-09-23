@@ -28,12 +28,12 @@ router.post("/", async (req, res, next) => {
     const { search } = req.body;
 
     const result = await client.search({
-      index: "kibana_sample_data_ecommerce",
-      _source: ["customer_full_name", "customer_gender"],
+      index: "movie_test",
+
       body: {
         query: {
           match: {
-            customer_full_name: search,
+            h_movie: search,
           },
         },
       },
