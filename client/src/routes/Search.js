@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -29,10 +30,26 @@ const Sort = styled.div`
 `;
 
 function Search() {
-  const location = useLocation();
-  const data = location.state.data;
-
-  console.log(data);
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query');
+  const [searchData, setSearchData] = useState({
+    data: [],
+    isLoading: false,
+  });
+  useEffect(() => {
+    if (query) {
+      axios
+        .post('/api/search', { search: query })
+        .then(res => {
+          setSearchData({
+            data: [...res.data.hits],
+            isLoading: true,
+          });
+        })
+        .catch(err => console.error(err));
+    }
+  }, [query]);
+  console.log(searchData);
   return (
     <Wrapper>
       <h1>Title</h1>

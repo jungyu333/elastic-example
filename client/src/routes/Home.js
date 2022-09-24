@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Search from '../components/SearchInput';
+import SearchInput from '../components/SearchInput';
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ function Home() {
   return (
     <Wrapper>
       <Title>Title</Title>
-      <Search />
+      <SearchInput />
     </Wrapper>
   );
 }
