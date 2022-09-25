@@ -9,11 +9,15 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CustomList = styled(List)`
-  margin: 1rem auto;
+  margin: 0.5rem auto;
   width: 100%;
+  &:hover {
+    background-color: #c6c2c1;
+  }
 `;
 
 const CustomAvatarItem = styled(ListItemAvatar)`
@@ -30,9 +34,8 @@ const CustomAvatarItem = styled(ListItemAvatar)`
   }
 `;
 
-const CustomDivider = styled(Divider)`
-  width: 100%;
-  margin-left: 1rem;
+const CustomListItem = styled(ListItem)`
+  padding: 10px 0;
 `;
 
 function SearchItem({ source }) {
@@ -40,28 +43,35 @@ function SearchItem({ source }) {
   return (
     <Grid item xl={12} sm={6}>
       <CustomList>
-        <ListItem alignItems="flex-start">
-          <CustomAvatarItem>
-            <Avatar variant="square" alt="Remy Sharp" src={source.movie_img} />
-          </CustomAvatarItem>
-          <ListItemText
-            primary={source.h_movie}
-            secondary={
-              <>
-                <Typography
-                  sx={{ display: 'inline' }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                >
-                  {source.genre}
-                </Typography>
-                {`- ${source.movie_director}`}
-              </>
-            }
-          />
-        </ListItem>
-        <CustomDivider variant="inset" component="div" />
+        <Link to={'/'}>
+          <CustomListItem alignItems="flex-start">
+            <CustomAvatarItem>
+              <Avatar
+                variant="square"
+                alt="Remy Sharp"
+                src={source.movie_img}
+              />
+            </CustomAvatarItem>
+            <ListItemText
+              primary={source.h_movie}
+              secondary={
+                <>
+                  <Typography
+                    sx={{ display: 'inline' }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    {source.genre}
+                  </Typography>
+                  {`- ${source.movie_director}`}
+                </>
+              }
+            />
+          </CustomListItem>
+        </Link>
+
+        <Divider variant="fullWidth" textAlign="start" component="div" />
       </CustomList>
     </Grid>
   );
