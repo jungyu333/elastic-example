@@ -58,7 +58,7 @@ function Search() {
         .catch(err => console.error(err));
     }
   }, [query]);
-  console.log(searchData);
+
   return (
     <Wrapper>
       <Header>
@@ -72,7 +72,7 @@ function Search() {
           </Link>
         </SortContainer>
       </Header>
-      <SearchList />
+      <SearchList searchData={searchData.data} />
     </Wrapper>
   );
 }
