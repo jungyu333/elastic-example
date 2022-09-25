@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
+import SearchList from '../components/SearchList';
 
 const Wrapper = styled.div`
   margin: 10rem;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
@@ -13,6 +15,13 @@ const Wrapper = styled.div`
     font-weight: 600;
     font-size: 2rem;
   }
+`;
+
+const Header = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const SortContainer = styled.div`
@@ -52,11 +61,18 @@ function Search() {
   console.log(searchData);
   return (
     <Wrapper>
-      <h1>Title</h1>
-      <SortContainer>
-        <Sort>인기순</Sort>
-        <Sort>평점순</Sort>
-      </SortContainer>
+      <Header>
+        <h1>Title</h1>
+        <SortContainer>
+          <Link to={`/search?query=${query}&sort=${'인기순'}`}>
+            <Sort>인기순</Sort>
+          </Link>
+          <Link to={`/search?query=${query}&sort=${'평점순'}`}>
+            <Sort>평점순</Sort>
+          </Link>
+        </SortContainer>
+      </Header>
+      <SearchList />
     </Wrapper>
   );
 }
