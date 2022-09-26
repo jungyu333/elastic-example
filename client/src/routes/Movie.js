@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import Actor from '../components/Actor';
 
 const MovieImage = styled.div`
   width: 100%;
@@ -56,10 +57,6 @@ const MiddleItem = styled.div`
   }
 `;
 
-const Actor = styled.div`
-  margin-right: 10px;
-`;
-
 function Movie() {
   const { id } = useParams();
   const [movie, setMovie] = useState({
@@ -77,7 +74,7 @@ function Movie() {
       )
       .catch(err => console.error(err));
   }, [id]);
-  console.log(movie);
+
   return (
     <Container>
       <ImageListItem>
@@ -95,11 +92,7 @@ function Movie() {
 
           <MiddleItem>
             <h1>출연</h1>
-            <div>
-              {movie.movieData[0]?._source.movie_actor.map(actor => (
-                <Actor>{actor}</Actor>
-              ))}
-            </div>
+            <Actor actor={movie.movieData[0]?._source.movie_actor} />
           </MiddleItem>
         </MiddleContainer>
       </ImageListItem>
