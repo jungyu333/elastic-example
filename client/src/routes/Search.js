@@ -50,6 +50,10 @@ const FilterContainer = styled.div`
     border: 1px solid gray;
     padding: 5px 10px;
     border-radius: 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: lightgray;
+    }
   }
 `;
 
