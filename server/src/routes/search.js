@@ -5,12 +5,14 @@ const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
+    const { movieId } = req.query;
+
     const result = await client.search({
-      index: "kibana_sample_data_ecommerce",
+      index: "movie_test",
       body: {
         query: {
           match: {
-            _id: req.query.id,
+            movie_id: movieId,
           },
         },
       },

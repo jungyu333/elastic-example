@@ -39,11 +39,10 @@ const CustomListItem = styled(ListItem)`
 `;
 
 function SearchItem({ source }) {
-  console.log(source);
   return (
     <Grid item xl={12} sm={6}>
       <CustomList>
-        <Link to={'/'}>
+        <Link to={`/movie/${source.movie_id}`}>
           <CustomListItem alignItems="flex-start">
             <CustomAvatarItem>
               <Avatar
@@ -71,7 +70,7 @@ function SearchItem({ source }) {
           </CustomListItem>
         </Link>
 
-        <Divider variant="fullWidth" textAlign="start" component="div" />
+        <Divider component="div" />
       </CustomList>
     </Grid>
   );
