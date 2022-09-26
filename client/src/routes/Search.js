@@ -38,6 +38,21 @@ const Sort = styled.div`
   }
 `;
 
+const FilterContainer = styled.div`
+  width: 100%;
+  margin: 15px 0;
+  display: flex;
+  justify-content: flex-start;
+  & div {
+    font-size: 0.8rem;
+    color: gray;
+    margin: 0 5px;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    border-radius: 20px;
+  }
+`;
+
 function Search() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query');
@@ -72,6 +87,11 @@ function Search() {
           </Link>
         </SortContainer>
       </Header>
+      <FilterContainer>
+        <div>액션</div>
+        <div>드라마</div>
+        <div>스릴러</div>
+      </FilterContainer>
       <SearchList searchData={searchData.data} />
     </Wrapper>
   );
