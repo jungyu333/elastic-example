@@ -57,6 +57,32 @@ const MiddleItem = styled.div`
   }
 `;
 
+const KeyWordContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  & h1 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+`;
+
+const KeyWordTagContainer = styled.div`
+  display: flex;
+  & div {
+    font-size: 0.8rem;
+    color: gray;
+    margin: 0 5px;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: lightgray;
+    }
+  }
+`;
+
 function Movie() {
   const { id } = useParams();
   const [movie, setMovie] = useState({
@@ -79,23 +105,31 @@ function Movie() {
     <Container>
       <ImageListItem>
         <MovieImage />
-        <Header>
-          <h1>{movie.movieData[0]?._source.h_movie}</h1>
-          <span>{movie.movieData[0]?._source.genre}</span>
-        </Header>
-        <CustomDivider component="div" />
-        <MiddleContainer>
-          <MiddleItem>
-            <h1>감독</h1>
-            <div>{movie.movieData[0]?._source.movie_director}</div>
-          </MiddleItem>
-
-          <MiddleItem>
-            <h1>출연</h1>
-            <Actor actor={movie.movieData[0]?._source.movie_actor} />
-          </MiddleItem>
-        </MiddleContainer>
       </ImageListItem>
+      <Header>
+        <h1>{movie.movieData[0]?._source.h_movie}</h1>
+        <span>{movie.movieData[0]?._source.genre}</span>
+      </Header>
+      <CustomDivider component="div" />
+      <MiddleContainer>
+        <MiddleItem>
+          <h1>감독</h1>
+          <div>{movie.movieData[0]?._source.movie_director}</div>
+        </MiddleItem>
+
+        <MiddleItem>
+          <h1>출연</h1>
+          <Actor actor={movie.movieData[0]?._source.movie_actor} />
+        </MiddleItem>
+      </MiddleContainer>
+      <KeyWordContainer>
+        <h1>키워드</h1>
+        <KeyWordTagContainer>
+          <div>키워드 1</div>
+          <div>키워드 2</div>
+          <div>키워드 3</div>
+        </KeyWordTagContainer>
+      </KeyWordContainer>
     </Container>
   );
 }
