@@ -1,4 +1,4 @@
-import { Divider, ImageListItem } from '@mui/material';
+import { Divider, Grid, ImageListItem } from '@mui/material';
 import { Container } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -83,6 +83,22 @@ const KeyWordTagContainer = styled.div`
   }
 `;
 
+const CustomGridContainer = styled(Grid)`
+  margin: 2rem 0;
+`;
+
+const CustomGridItem = styled(Grid)`
+  height: 40vh;
+  width: 40vw;
+  padding: 1rem;
+  border: 0.5px solid lightgray;
+  & h1 {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: gray;
+  }
+`;
+
 function Movie() {
   const { id } = useParams();
   const [movie, setMovie] = useState({
@@ -130,6 +146,19 @@ function Movie() {
           <div>키워드 3</div>
         </KeyWordTagContainer>
       </KeyWordContainer>
+
+      <CustomGridContainer justifyContent="center" gap={2} rowGap={2} container>
+        <CustomGridItem item xl={5} xs={12}>
+          <div>
+            <h1>긍정 리뷰</h1>
+          </div>
+        </CustomGridItem>
+        <CustomGridItem item xl={5} xs={12}>
+          <div>
+            <h1>부정 리뷰</h1>
+          </div>
+        </CustomGridItem>
+      </CustomGridContainer>
     </Container>
   );
 }
