@@ -5,7 +5,6 @@ import ActorModal from './ActorModal';
 const Actors = styled.div`
   margin-right: 10px;
   cursor: pointer;
-
   &:hover {
     color: gray;
   }
