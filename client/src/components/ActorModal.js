@@ -1,5 +1,6 @@
 import { Box, Modal, Typography } from '@mui/material';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 const CustomModal = styled(Box)`
@@ -15,15 +16,19 @@ const CustomModal = styled(Box)`
 `;
 
 function ActorModal({ onClickCloseModal, openModal, actor }) {
+  useEffect(() => {
+    if (actor) {
+      console.log(actor);
+      axios.get(`/search?actor=${encodeURIComponent(actor)}`);
+    }
+  }, [actor]);
+
   return (
     <>
       <Modal open={openModal} onClose={onClickCloseModal}>
         <CustomModal>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {actor}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography>
         </CustomModal>
       </Modal>

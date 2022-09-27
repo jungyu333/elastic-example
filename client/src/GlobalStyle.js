@@ -91,6 +91,8 @@ video {
   vertical-align: baseline;
   box-sizing:border-box ;
   text-decoration:none ;
+  user-select: none;
+  -ms-user-select: none;
   :link {
     color: black;
   }
