@@ -48,4 +48,13 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.get("/", async (req, res, next) => {
+  try {
+    console.log(req.query.actor);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+});
+
 export default router;
