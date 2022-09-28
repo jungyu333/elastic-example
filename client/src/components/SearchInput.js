@@ -19,7 +19,7 @@ const SearchForm = styled.form`
   width: 60%;
 `;
 
-const LayoutSearch = styled.div`
+const LayoutSearch = styled.form`
   border-radius: 10px;
   border: 1px solid lightgray;
   padding: 5px;
@@ -35,7 +35,6 @@ const CustomInputBase = styled(InputBase)`
 
 function SearchInput({ isNavSearch, isMain }) {
   const [content, setContent] = useState('');
-
   const navigation = useNavigate();
   const onChange = e => {
     setContent(e.target.value);
@@ -50,8 +49,9 @@ function SearchInput({ isNavSearch, isMain }) {
       {isMain ? null : (
         <>
           {isNavSearch ? (
-            <LayoutSearch>
+            <LayoutSearch onSubmit={onSubmit} autoComplete="off">
               <CustomInputBase
+                onChange={onChange}
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
               />
