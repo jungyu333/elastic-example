@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Actor from '../components/Actor';
+import Layout from '../components/Layout';
 
 const MovieImage = styled.div`
   width: 100%;
@@ -118,48 +119,56 @@ function Movie() {
   }, [id]);
 
   return (
-    <Container>
-      <ImageListItem>
-        <MovieImage />
-      </ImageListItem>
-      <Header>
-        <h1>{movie.movieData[0]?._source.h_movie}</h1>
-        <span>{movie.movieData[0]?._source.genre}</span>
-      </Header>
-      <CustomDivider component="div" />
-      <MiddleContainer>
-        <MiddleItem>
-          <h1>감독</h1>
-          <div>{movie.movieData[0]?._source.movie_director}</div>
-        </MiddleItem>
+    <>
+      <Layout isNavSearch={true} />
+      <Container>
+        <ImageListItem>
+          <MovieImage />
+        </ImageListItem>
+        <Header>
+          <h1>{movie.movieData[0]?._source.h_movie}</h1>
+          <span>{movie.movieData[0]?._source.genre}</span>
+        </Header>
+        <CustomDivider component="div" />
+        <MiddleContainer>
+          <MiddleItem>
+            <h1>감독</h1>
+            <div>{movie.movieData[0]?._source.movie_director}</div>
+          </MiddleItem>
 
-        <MiddleItem>
-          <h1>출연</h1>
-          <Actor actor={movie.movieData[0]?._source.movie_actor} />
-        </MiddleItem>
-      </MiddleContainer>
-      <KeyWordContainer>
-        <h1>키워드</h1>
-        <KeyWordTagContainer>
-          <div>키워드 1</div>
-          <div>키워드 2</div>
-          <div>키워드 3</div>
-        </KeyWordTagContainer>
-      </KeyWordContainer>
+          <MiddleItem>
+            <h1>출연</h1>
+            <Actor actor={movie.movieData[0]?._source.movie_actor} />
+          </MiddleItem>
+        </MiddleContainer>
+        <KeyWordContainer>
+          <h1>키워드</h1>
+          <KeyWordTagContainer>
+            <div>키워드 1</div>
+            <div>키워드 2</div>
+            <div>키워드 3</div>
+          </KeyWordTagContainer>
+        </KeyWordContainer>
 
-      <CustomGridContainer justifyContent="center" gap={2} rowGap={2} container>
-        <CustomGridItem item xl={5} xs={12}>
-          <div>
-            <h1>긍정 리뷰</h1>
-          </div>
-        </CustomGridItem>
-        <CustomGridItem item xl={5} xs={12}>
-          <div>
-            <h1>부정 리뷰</h1>
-          </div>
-        </CustomGridItem>
-      </CustomGridContainer>
-    </Container>
+        <CustomGridContainer
+          justifyContent="center"
+          gap={2}
+          rowGap={2}
+          container
+        >
+          <CustomGridItem item xl={5} xs={12}>
+            <div>
+              <h1>긍정 리뷰</h1>
+            </div>
+          </CustomGridItem>
+          <CustomGridItem item xl={5} xs={12}>
+            <div>
+              <h1>부정 리뷰</h1>
+            </div>
+          </CustomGridItem>
+        </CustomGridContainer>
+      </Container>
+    </>
   );
 }
 

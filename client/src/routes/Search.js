@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
+import Layout from '../components/Layout';
 import SearchList from '../components/SearchList';
 
 const Wrapper = styled.div`
-  margin: 10rem;
+  margin: 5rem 10rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -79,25 +80,28 @@ function Search() {
   }, [query]);
 
   return (
-    <Wrapper>
-      <Header>
-        <h1>Title</h1>
-        <SortContainer>
-          <Link to={`/search?query=${query}&sort=${'인기순'}`}>
-            <Sort>인기순</Sort>
-          </Link>
-          <Link to={`/search?query=${query}&sort=${'평점순'}`}>
-            <Sort>평점순</Sort>
-          </Link>
-        </SortContainer>
-      </Header>
-      <FilterContainer>
-        <div>액션</div>
-        <div>드라마</div>
-        <div>스릴러</div>
-      </FilterContainer>
-      <SearchList searchData={searchData.data} />
-    </Wrapper>
+    <>
+      <Layout isNavSearch={true} />
+      <Wrapper>
+        <Header>
+          <h1>Title</h1>
+          <SortContainer>
+            <Link to={`/search?query=${query}&sort=${'인기순'}`}>
+              <Sort>인기순</Sort>
+            </Link>
+            <Link to={`/search?query=${query}&sort=${'평점순'}`}>
+              <Sort>평점순</Sort>
+            </Link>
+          </SortContainer>
+        </Header>
+        <FilterContainer>
+          <div>액션</div>
+          <div>드라마</div>
+          <div>스릴러</div>
+        </FilterContainer>
+        <SearchList searchData={searchData.data} />
+      </Wrapper>
+    </>
   );
 }
 
