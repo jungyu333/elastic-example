@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Layout from '../components/Layout';
 import SearchInput from '../components/SearchInput';
 
 const Wrapper = styled.div`
@@ -18,10 +19,14 @@ const Title = styled.h1`
 
 function Home() {
   return (
-    <Wrapper>
-      <Title>Title</Title>
-      <SearchInput />
-    </Wrapper>
+    <>
+      <Layout isNavSearch={true} isMain={true} />
+
+      <Wrapper>
+        <Title>Title</Title>
+        <SearchInput />
+      </Wrapper>
+    </>
   );
 }
 
